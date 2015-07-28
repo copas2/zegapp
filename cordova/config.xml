@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget>
-	id="hu.copas.tabris"
-	version="1.0.0"
+<widget id="hu.copas.tabris" version="1.0.0">
 
   <name>ZegDemo</name>
   <description>Zalaegerszeg Demo App</description>
