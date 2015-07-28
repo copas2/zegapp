@@ -1,0 +1,104 @@
+﻿tabris.ui.openPageFreetime = function() {
+
+var page = tabris.create("Page", {
+	title: "Szabadidő",
+	topLevel: false,
+	image: "res/images/szabadido.png",
+});
+tabris.ui.pageCreateSurrounds(page);
+
+var icons = [
+	{
+		label: "Mozi",
+		image: "res/images/mozi.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	{
+		label: "Színház",
+		image: "res/images/szinhaz.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	{
+		label: "Sportlehetőségek",
+		image: "res/images/sportolasilehetoseg.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+
+	{
+		label: "Szórakozóhelyek",
+		image: "res/images/szorakozohelyek.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	{
+		label: "Bevásárlás",
+		image: "res/images/shop.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	{
+		label: "Felüdülés",
+		image: "res/images/vendeglatas.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+
+	{
+		label: "Múzeumok",
+		image: "res/images/muzeum.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	{
+		label: "Kiállítóhelyek",
+		image: "res/images/kiallitohelyek.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	{
+		label: "Építészet",
+		image: "res/images/epiteszetilatnivalok.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	
+	{
+		label: "Természeti érték",
+		image: "res/images/latnivalok.png",
+		opener: tabris.ui.openPageFreetime,
+	},
+	
+];
+
+var size = 70;
+var left = 20;
+var dleft = 30;
+var top = 12;
+var dtop = 25;
+var vgap = 40;
+var tgap = 3;
+var font = "13px";
+
+var scrollView = tabris.create("ScrollView", {
+	layoutData: {left: 0, top: 0, right: 0, bottom: "20%"}
+}).appendTo(page);
+var i = 0;
+for (x in icons) {
+	var icon = icons[x];
+	
+	var comp = tabris.create("Composite", {
+		layoutData: {left: [left+dleft*(i%3), -size * 5 / 3 / 2], width: size * 5 / 3, top: top+(size+vgap)*parseInt(i/3), height: size + vgap}
+	}).appendTo(scrollView);
+	
+	var image = tabris.create("ImageView", {
+		image: {src: icon["image"]},
+		layoutData: {centerX: 0, width: size, top: 0, height: size},
+		highlightOnTouch: true,
+	}).appendTo(comp);
+	tabris.create("TextView", {
+		layoutData: {left: 0, top: [image, tgap], right: 0},
+		alignment: "center",
+		text: icon["label"],
+		font: font,
+	}).appendTo(comp);
+	i++;
+}
+
+
+page.open();
+
+}

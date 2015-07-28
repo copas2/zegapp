@@ -1,7 +1,7 @@
 {
-  "name": "tabris-getting-started",
-  "description": "Tabris.js - Hello, World!",
-  "main": "hello.js",
+  "name": "ZegAppDemo",
+  "description": "Zalaegerszeg App Demo",
+  "main": "main.js",
   "dependencies": {
     "tabris": "1.0.0"
   }
