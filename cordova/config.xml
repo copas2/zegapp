@@ -8,6 +8,7 @@
   </author>
 
   <gap:plugin name="org.apache.cordova.camera" />
+  <gap:plugin name="https://github.com/Moussawi7/Cordova-GPSLocator" />
 
 	<platform name="ios">
         <!-- iOS 8.0+ -->
