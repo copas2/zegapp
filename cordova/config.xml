@@ -6,9 +6,8 @@
   <author email="copas@zalaszam.hu" href="https://www.zalaszam.hu">
    Zalaszam Dev Team
   </author>
-
-  <gap:plugin name="cordova-plugin-camera" />
-
+  
+	
 	<platform name="ios">
         <!-- iOS 8.0+ -->
         <icon src="icons/ios/Icon-60@3x.png" width="180" height="180" />
