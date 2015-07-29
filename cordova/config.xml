@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="hu.copas.tabris" version="1.0.0">
+<widget 
+	id="hu.copas.tabris" 
+	version="1.0.0"
+	xmlns:gap="http://phonegap.com/ns/1.0"
+	xmlns="http://www.w3.org/ns/widgets"
+	xmlns:cdv="http://cordova.apache.org/ns/1.0"
+>	
 
   <name>ZegDemo</name>
   <description>Zalaegerszeg Demo App</description>
@@ -7,8 +13,8 @@
    Zalaszam Dev Team
   </author>
   
-<gap:plugin name="https://github.com/Moussawi7/Cordova-GPSLocator" />
-	
+  <access origin="*" />
+  
 	<platform name="ios">
         <!-- iOS 8.0+ -->
         <icon src="icons/ios/Icon-60@3x.png" width="180" height="180" />
@@ -44,5 +50,9 @@
         <icon src="icons/android/drawable-xxhdpi/ic_launcher.png" density="xxhdpi" />
         <icon src="icons/android/drawable-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
     </platform>
+	
+	<preference name="EnableDeveloperConsole" value="true"/>
+	
+	<gap:plugin name="cordova-plugin-camera" />
 	
 </widget>
