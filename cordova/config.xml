@@ -6,7 +6,5 @@
   <author email="copas@zalaszam.hu" href="https://www.zalaszam.hu">
    Zalaszam Dev Team
   </author>
-  	
-	<gap:plugin name="cordova-plugin-directions"/>
   
 </widget>
