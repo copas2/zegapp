@@ -7,6 +7,8 @@
    Zalaszam Dev Team
   </author>
 
+  <gap:plugin name="org.apache.cordova.camera" />
+
 	<platform name="ios">
         <!-- iOS 8.0+ -->
         <icon src="icons/ios/Icon-60@3x.png" width="180" height="180" />
@@ -42,10 +44,5 @@
         <icon src="icons/android/drawable-xxhdpi/ic_launcher.png" density="xxhdpi" />
         <icon src="icons/android/drawable-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
     </platform>
-	
-	<feature name="http://api.phonegap.com/1.0/camera"/>
-	
-	<feature name="http://api.phonegap.com/1.0/geolocation"/>
-	<gap:plugin name="uk.co.ilee.directions"/>
 	
 </widget>
