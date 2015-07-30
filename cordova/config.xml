@@ -54,6 +54,7 @@
 	<preference name="EnableDeveloperConsole" value="true"/>
 	
 	<gap:plugin name="cordova-plugin-camera" />
+	<gap:plugin name="cordova-plugin-dialogs" />
 	<gap:plugin name="cordova-plugin-device-motion" />
 	<gap:plugin name="cordova-plugin-geolocation" />
 	
