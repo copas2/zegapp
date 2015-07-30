@@ -10,22 +10,32 @@ var page = tabris.create("Page", {
 var watchID = "";
 var pickedIndex = 0;
 var pos = {
-	x: "?",
-	y: "?",
-	z: "?",
+	lat: "?",
+	lng: "?",
+	alt: "?",
 }
 
 page.on("appear", function(widget) {
+	tabris.ui.getLocation(function(position) {
+		pos.lat = position.coords.latitude;
+		pos.lng = position.coords.longitude;
+		pos.alt = position.coords.altitude;
+		textPosition.set("text", pos.lat + "," + pos.lng);
+	});
+	/*
 	watchID = tabris.ui.startLocationWatch(function(location) {
 		pos = location;
 		tabris.ui.stopLocationWatch(watchID);
 		watchID = "";
 		textPosition.set("text", pos.x + "," + pos.y);
 	});
+	*/
 });
+/*
 page.on("disappear", function(widget) {
 	tabris.ui.stopLocationWatch(watchID);
 });
+*/
 
 
 var picker = tabris.create("Picker", {

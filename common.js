@@ -89,6 +89,7 @@ tabris.ui.takePicture = function(imagePhoto) {
 	}
 }
 
+/*
 tabris.ui.startLocationWatch = function(watchCallback) {
 	var watchID = "";
 	var onSuccess = function(location) {
@@ -104,6 +105,14 @@ tabris.ui.startLocationWatch = function(watchCallback) {
 tabris.ui.stopLocationWatch = function(watchID) {
 	if (watchID)
 		navigator.accelerometer.clearWatch(watchID);
+}
+*/
+
+tabris.ui.getLocation = function(onSuccess) {
+	var onError = function(error) {
+		tabris.ui.showMessage({title: "Helymeghatározási: " + error});
+	}
+	navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
 }
 
 tabris.ui.showMessage = function(params) {
