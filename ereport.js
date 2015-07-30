@@ -17,9 +17,8 @@ var pos = {
 
 page.on("appear", function(widget) {
 	tabris.ui.getLocation(function(position) {
-		pos.lat = position.coords.latitude;
-		pos.lng = position.coords.longitude;
-		pos.alt = position.coords.altitude;
+		pos.lat = position[0];
+		pos.lng = position[1];
 		textPosition.set("text", pos.lat + "," + pos.lng);
 	});
 	/*
