@@ -112,7 +112,8 @@ tabris.ui.getLocation = function(onSuccess) {
 	var onError = function(error) {
 		tabris.ui.showMessage({title: "Helymeghatározási: " + error});
 	}
-	navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
+	// navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
+	cordova.exec(onSuccess, onError, "GPS", "escrever", []);
 }
 
 tabris.ui.showMessage = function(params) {
