@@ -56,5 +56,6 @@
 	<gap:plugin name="cordova-plugin-camera" />
 	<gap:plugin name="cordova-plugin-dialogs" />
 	<gap:plugin name="cordova-plugin-geolocation" />
+	<gap:plugin name="nl.x-services.plugins.toast" source="plugins.cordova.io" />
 	
 </widget>
