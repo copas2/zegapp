@@ -57,5 +57,6 @@
 	<gap:plugin name="cordova-plugin-dialogs" />
 	<gap:plugin name="cordova-plugin-device-motion" />
 	<gap:plugin name="cordova-plugin-geolocation" />
+	<gap:plugin name="Toast-PhoneGap-Plugin" />
 	
 </widget>
