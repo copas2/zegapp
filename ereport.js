@@ -81,7 +81,7 @@ var imagePhoto = tabris.create("ImageView", {
 var textPosition = tabris.create("TextView", {
 	layoutData: {left: 0, top: [imagePhoto, 3], right: 0},
 	alignment: "center",
-	text: pos.x + "," + pos.y,
+	text: pos.lat + "," + pos.lng,
 	maxLines: 1,
 }).appendTo(page);
 

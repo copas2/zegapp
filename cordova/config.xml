@@ -57,5 +57,6 @@
 	<gap:plugin name="cordova-plugin-dialogs" />
 	<gap:plugin name="cordova-plugin-geolocation" />
 	<gap:plugin name="nl.x-services.plugins.toast" source="plugins.cordova.io" />
+	<gap:plugin name="uk.co.ilee.directions" source="plugins.cordova.io" />
 	
 </widget>
