@@ -9,20 +9,26 @@ var page = tabris.create("Page", {
 
 var watchID = "";
 var pickedIndex = 0;
+var hmargin = "5%";
 var pos = {
 	lat: "?",
 	lng: "?",
 	alt: "?",
 }
 
+var getPosition = function() {
+	watchID = "";
+	tabris.ui.getLocation(function(position) {
+		pos.lat = position[0];
+		pos.lng = position[1];
+		textPosition.set("text", pos.lat + "," + pos.lng);
+		if (pos.lat + pos.lng == 0)
+			watchID = window.setTimeout(getPosition, 3000);
+	});
+};
+
 page.on("appear", function(widget) {
-	watchID = window.setInterval(function() {
-		tabris.ui.getLocation(function(position) {
-			pos.lat = position[0];
-			pos.lng = position[1];
-			textPosition.set("text", pos.lat + "," + pos.lng);
-		});
-	}, 3000);
+	getPosition();
 	/*
 	watchID = tabris.ui.startLocationWatch(function(location) {
 		pos = location;
@@ -34,7 +40,8 @@ page.on("appear", function(widget) {
 });
 
 page.on("disappear", function(widget) {
-	window.clearInterval(watchID);
+	if (watchID)
+		window.clearInterval(watchID);
 	/*
 	tabris.ui.stopLocationWatch(watchID);
 	*/
@@ -42,7 +49,7 @@ page.on("disappear", function(widget) {
 
 
 var picker = tabris.create("Picker", {
-  layoutData: {left: "15%", top: "3%", right: "15%"},
+  layoutData: {left: hmargin, top: 10, right: hmargin},
   items: ["Bejelentés típusa...",
 		"Illegálisan lerakott hulladék",
         "Parlagfű",
@@ -59,38 +66,23 @@ var picker = tabris.create("Picker", {
 }).appendTo(page);
 
 var inputReport = tabris.create("TextInput", {
-	layoutData: {left: "15%", top: [picker, 5], right: "15%", bottom: "60%"},
+	layoutData: {left: hmargin, top: [picker, 3], right: hmargin, bottom: "60%"},
 	alignment: "left",
 	message: "A bejelentés szövege...",
 	type: "multiline",
 }).appendTo(page);
 
 var textPhoto = tabris.create("TextView", {
-	layoutData: {left: 0, top: [inputReport, 10], right: 0},
+	layoutData: {left: hmargin, top: [inputReport, 3], right: hmargin},
 	alignment: "center",
 	markupEnabled: true,
 	text: "<i>Fotó mellékelése</i>",
 	maxLines: 1,
 }).appendTo(page);
 
-var imagePhoto = tabris.create("ImageView", {
-	image: {src: "res/images/camera.png"},
-	layoutData: {left: "15%", right: "15%", top: [textPhoto, 3], bottom: "20%"},
-	highlightOnTouch: true,
-	scaleMode: "fit", // "auto" "stretch",
-}).appendTo(page)
-.on("tap", function() { tabris.ui.takePicture(imagePhoto); });
-
-var textPosition = tabris.create("TextView", {
-	layoutData: {left: 0, top: [imagePhoto, 3], right: 0},
-	alignment: "center",
-	text: pos.lat + "," + pos.lng,
-	maxLines: 1,
-}).appendTo(page);
-
-tabris.create("Button", {
+btnSendReport = tabris.create("Button", {
     text: "Bejelentés küldés...",
-    layoutData: {centerX: 0, top: [textPosition, 5]},
+    layoutData: {left: hmargin, bottom: 10, right: hmargin},
 }).appendTo(page)
 .on("select", function() {
 	tabris.ui.showMessage({
@@ -108,6 +100,23 @@ tabris.create("Button", {
 		},
 	});
 });
+
+var textPosition = tabris.create("TextView", {
+	layoutData: {left: hmargin, bottom: [btnSendReport, 3], right: hmargin},
+	alignment: "center",
+	text: pos.lat + "," + pos.lng,
+	maxLines: 1,
+}).appendTo(page);
+
+var imagePhoto = tabris.create("ImageView", {
+	image: {src: "res/images/camera.png"},
+	layoutData: {left: hmargin, top: [textPhoto, 3], right: hmargin, bottom: [textPosition, 3]},
+	highlightOnTouch: true,
+	scaleMode: "fit", // "auto" "stretch",
+}).appendTo(page)
+.on("tap", function() { tabris.ui.takePicture(imagePhoto); });
+
+
 
 
 

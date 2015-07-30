@@ -57,9 +57,9 @@ tabris.ui.pageCreateIcons = function(args) {
 		}).appendTo(page);
 		
 		var image = tabris.create("ImageView", {
-			image: {src: icon["image"]},
+			image: icon["image"],
 			layoutData: {left: 0, right: 0, top: 0, bottom: 35},
-			scaleMode: "fit", // "auto" "stretch",
+			scaleMode: "fit", // "fit" "auto" "stretch"
 			highlightOnTouch: true,
 		}).appendTo(comp).on("tap", icon["opener"]);
 		tabris.create("TextView", {
@@ -110,7 +110,7 @@ tabris.ui.stopLocationWatch = function(watchID) {
 
 tabris.ui.getLocation = function(onSuccess) {
 	var onError = function(error) {
-		tabris.ui.showMessage({title: "Helymeghatározási: " + error});
+		console.log("Helymeghatározási hiba: " + error);
 	}
 	// navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
 	cordova.exec(onSuccess, onError, "GPS", "escrever", []);
