@@ -16,11 +16,13 @@ var pos = {
 }
 
 page.on("appear", function(widget) {
-	tabris.ui.getLocation(function(position) {
-		pos.lat = position[0];
-		pos.lng = position[1];
-		textPosition.set("text", pos.lat + "," + pos.lng);
-	});
+	watchID = window.setInterval(function() {
+		tabris.ui.getLocation(function(position) {
+			pos.lat = position[0];
+			pos.lng = position[1];
+			textPosition.set("text", pos.lat + "," + pos.lng);
+		});
+	}, 3000);
 	/*
 	watchID = tabris.ui.startLocationWatch(function(location) {
 		pos = location;
@@ -30,11 +32,13 @@ page.on("appear", function(widget) {
 	});
 	*/
 });
-/*
+
 page.on("disappear", function(widget) {
+	window.clearInterval(watchID);
+	/*
 	tabris.ui.stopLocationWatch(watchID);
+	*/
 });
-*/
 
 
 var picker = tabris.create("Picker", {
