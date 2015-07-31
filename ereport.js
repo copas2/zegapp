@@ -96,7 +96,8 @@ btnSendReport = tabris.create("Button", {
 				console.log(inputReport.get("text"));
 				console.log(pos.x + "," + pos.y);
 			} else
-				directions.navigateTo("51.50722", "-0.12750");
+				// directions.navigateTo("51.50722", "-0.12750");
+				maplauncher.openMap("8900 Zalaegerszeg, Mártírok útja 53.");
 		},
 	});
 });
