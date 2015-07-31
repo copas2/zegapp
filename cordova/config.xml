@@ -57,6 +57,7 @@
 	<gap:plugin name="cordova-plugin-dialogs" />
 	<gap:plugin name="cordova-plugin-geolocation" />
 	<gap:plugin name="cordova-plugin-barcodescanner" />
+	<gap:plugin name="https://github.com/kizetsu/phonegap-maplauncher" />
 	<gap:plugin name="nl.x-services.plugins.toast" source="plugins.cordova.io" />
 	<gap:plugin name="uk.co.ilee.directions" source="plugins.cordova.io" />
 	<gap:plugin name="com.vitorventurin.gps" source="plugins.cordova.io" />
