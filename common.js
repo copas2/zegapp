@@ -1,10 +1,23 @@
-﻿tabris.device.on("change:orientation", function(event) {
-	tabris.ui.pageAdjustFontSize(tabris.ui.get("activePage"));
+﻿tabris.ui.myPages = {};
+tabris.ui.openMyPage = function(page) {
+	tabris.ui.set("image", page.get("image"));
+	if (page.get("iconStructure"))
+		tabris.ui.pageCreateIcons(page);
+	page.open();
+}
+
+tabris.device.on("change:orientation", function(event) {
+	// tabris.ui.pageAdjustFontSize(tabris.ui.get("activePage"));
+	if (tabris.ui.get("activePage").get("createdIcons")) {
+		var createdIcons = tabris.ui.get("activePage").get("createdIcons");
+		for (var idx in createdIcons)
+			createdIcons[idx].dispose();
+		tabris.ui.pageCreateIcons(tabris.ui.get("activePage"));
+	}
 });
 
 tabris.ui.pageCreateSurrounds = function(page) {
 	var top = 85;
-	page.on("appear", function(widget) { tabris.ui.set("image", widget.get("image")); })
 	tabris.create("ImageView", {
 		image: {src: "res/images/mobillablec.png"},
 		scaleMode: "fit", // "auto" "stretch",
@@ -13,6 +26,7 @@ tabris.ui.pageCreateSurrounds = function(page) {
 	return top;
 }
 
+/*
 tabris.ui.pageAdjustFontSize = function(page) {
 	if (page.get("iconColumns")) {
 		var width = tabris.device.get("screenWidth") / page.get("iconColumns");
@@ -20,13 +34,17 @@ tabris.ui.pageAdjustFontSize = function(page) {
 		page.apply({"TextView": {font: fontSize+"px"}})
 	}
 }
+*/
 
-tabris.ui.pageCreateIcons = function(args) {
+tabris.ui.pageCreateIcons = function(page) {
+	var createdIcons = [];
+	var args = page.get("iconStructure");
+	var tilted = (tabris.device.get("orientation") == "landscape-primary" || tabris.device.get("orientation") == "landscape-secondary");
+	
 	var icons = args["icons"];
-	var page = args["page"];
 	var pageHeight = args["pageHeight"]
-	var columns = args["columns"];
-	var rows = args["rows"];
+	var columns = !tilted ? args["columns"] : args["rows"];
+	var rows = !tilted ? args["rows"] : args["columns"];
 	var top = args["top"];
 	var left = args["left"];
 
@@ -40,9 +58,8 @@ tabris.ui.pageCreateIcons = function(args) {
 	}).appendTo(page);
 	*/
 	var i = 0;
-	for (x in icons) {
-		var icon = icons[x];
-		
+	for (var idx in icons) {
+		var icon = icons[idx];
 		var cleft = parseInt(left+dleft*(i%columns));
 		var ctop = parseInt(top+dtop*parseInt(i/columns));
 		var cright = parseInt(101-left-dleft*(i%columns + 1));
@@ -55,7 +72,6 @@ tabris.ui.pageCreateIcons = function(args) {
 				bottom: cbottom + "%"
 			}
 		}).appendTo(page);
-		
 		var image = tabris.create("ImageView", {
 			image: icon["image"],
 			layoutData: {left: 0, right: 0, top: 0, bottom: 35},
@@ -68,10 +84,11 @@ tabris.ui.pageCreateIcons = function(args) {
 			text: icon["label"],
 			maxLines: 1,
 		}).appendTo(comp).on("tap", icon["opener"]);
+		createdIcons.push(comp);
 		i++;
 	}
-
-	tabris.ui.pageAdjustFontSize(page);
+	page.set("createdIcons", createdIcons);
+	// tabris.ui.pageAdjustFontSize(page);
 }
 
 tabris.ui.takePicture = function(imagePhoto) {

@@ -1,5 +1,4 @@
-﻿tabris.ui.openPageEreport = function() {
-
+﻿tabris.ui.myPages["ereport"] = function() {
 var page = tabris.create("Page", {
 	title: "E-bejelentés",
 	topLevel: false,
@@ -117,10 +116,5 @@ var imagePhoto = tabris.create("ImageView", {
 }).appendTo(page)
 .on("tap", function() { tabris.ui.takePicture(imagePhoto); });
 
-
-
-
-
-page.open();
-
+tabris.ui.openMyPage(page);
 }
